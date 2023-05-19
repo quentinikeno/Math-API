@@ -11,7 +11,7 @@ class Equation:
     answer: int
 
 class Equations:
-    def __init__(self, maxFirst = defaultMax, minFirst = defaultMin, maxSecond = defaultMax, minSecond = defaultMin, negative = False):
+    def __init__(self, minFirst = defaultMin, maxFirst = defaultMax, minSecond = defaultMin, maxSecond = defaultMax, negative = False):
         self.first = randint(minFirst, maxFirst)
         self.second = randint(minSecond, maxSecond)
         self.negative = negative
