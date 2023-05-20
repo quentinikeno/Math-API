@@ -10,7 +10,7 @@ class Equation:
     expression: str
     answer: int
 
-class Equations:
+class Generator:
     def __init__(self, minFirst = defaultMin, maxFirst = defaultMax, minSecond = defaultMin, maxSecond = defaultMax, negative = False):
         self.first = randint(minFirst, maxFirst)
         self.second = randint(minSecond, maxSecond)

@@ -7,7 +7,7 @@ class TestEquations(unittest.TestCase):
     def test_add_default(self):
         """Test the add method with the default settings."""
         
-        result = equations.Equations().add()
+        result = equations.Generator().add()
         
         self.assertTrue("first" in result)
         self.assertTrue(result["first"] >= 1)
@@ -22,7 +22,7 @@ class TestEquations(unittest.TestCase):
     def test_add_custom(self):
         """Test the add method with the min and max set to 2 and 3 for the first and second numbers."""
         
-        result = equations.Equations(2, 3, 2, 3).add()
+        result = equations.Generator(2, 3, 2, 3).add()
         
         self.assertTrue("first" in result)
         self.assertTrue(result["first"] >= 2)
@@ -37,7 +37,7 @@ class TestEquations(unittest.TestCase):
     def test_sub_default(self):
         """Test the sub method with the default settings."""
         
-        result = equations.Equations().sub()
+        result = equations.Generator().sub()
         print(result)
         self.assertTrue("first" in result)
         self.assertTrue(result["first"] >= 1)
