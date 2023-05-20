@@ -30,5 +30,5 @@ class Equations:
             # Switch the first and second number if the difference is negative and negatives aren't allowed
             self.first, self.second = self.second, self.first
         expression = f"{self.first} {operation} {self.second}"
-        answer = self.first + self.second
+        answer = self.first - self.second
         return {"first": self.first, "second": self.second, "operation": operation, "expression": expression, "answer": answer}
