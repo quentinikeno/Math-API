@@ -1,5 +1,5 @@
 import unittest
-import equations
+from services import equations
 
 class TestEquations(unittest.TestCase):
     """Tests for the Equations class."""
