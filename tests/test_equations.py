@@ -38,7 +38,7 @@ class TestEquations(unittest.TestCase):
         """Test the sub method with the default settings."""
         
         result = equations.Generator().sub()
-        print(result)
+
         self.assertTrue("first" in result)
         self.assertTrue(result["first"] >= 1)
         self.assertTrue(result["first"] <= 99)
@@ -48,6 +48,22 @@ class TestEquations(unittest.TestCase):
         self.assertEqual(result["operation"], "-")
         self.assertEqual(result["expression"], f'{result["first"]} - {result["second"]}')
         self.assertEqual(result["answer"], result["first"] - result["second"])
+        
+    def test_sub_negative(self):
+        """Test the sub method with negative numbers."""
+        
+        result = equations.Generator(1, 2, 3, 4, True).sub()
+
+        self.assertTrue("first" in result)
+        self.assertTrue(result["first"] >= 1)
+        self.assertTrue(result["first"] <= 2)
+        self.assertTrue("second" in result)
+        self.assertTrue(result["second"] >= 3)
+        self.assertTrue(result["second"] <= 4)
+        self.assertEqual(result["operation"], "-")
+        self.assertEqual(result["expression"], f'{result["first"]} - {result["second"]}')
+        self.assertEqual(result["answer"], result["first"] - result["second"])
+        self.assertTrue(result["answer"] < 0)
         
 if __name__ == '__main__':
     unittest.main()
