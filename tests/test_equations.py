@@ -80,5 +80,18 @@ class TestEquations(unittest.TestCase):
         self.assertEqual(result["expression"], f'{result["first"]} * {result["second"]}')
         self.assertEqual(result["answer"], result["first"] * result["second"])
         
+    def test_mul_custom(self):
+        """Test the mul method with the custom settings."""
+        
+        result = equations.Generator(4, 4, 5, 5).mul()
+
+        self.assertTrue("first" in result)
+        self.assertEqual(result["first"], 4)
+        self.assertTrue("second" in result)
+        self.assertTrue(result["second"], 5)
+        self.assertEqual(result["operation"], "*")
+        self.assertEqual(result["expression"], f'{result["first"]} * {result["second"]}')
+        self.assertEqual(result["answer"], 20)
+        
 if __name__ == '__main__':
     unittest.main()
