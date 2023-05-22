@@ -65,5 +65,20 @@ class TestEquations(unittest.TestCase):
         self.assertEqual(result["answer"], result["first"] - result["second"])
         self.assertTrue(result["answer"] < 0)
         
+    def test_mul_default(self):
+        """Test the mul method with the default settings."""
+        
+        result = equations.Generator().mul()
+
+        self.assertTrue("first" in result)
+        self.assertTrue(result["first"] >= 1)
+        self.assertTrue(result["first"] <= 99)
+        self.assertTrue("second" in result)
+        self.assertTrue(result["second"] >= 1)
+        self.assertTrue(result["second"] <= 99)
+        self.assertEqual(result["operation"], "*")
+        self.assertEqual(result["expression"], f'{result["first"]} * {result["second"]}')
+        self.assertEqual(result["answer"], result["first"] * result["second"])
+        
 if __name__ == '__main__':
     unittest.main()
