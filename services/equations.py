@@ -42,23 +42,29 @@ class Generator:
     
     def div(self) -> Equation:
         """Returns a dictionary with the type of the class Equation for a division problem problem."""
-        divisors = [1]
         if self.first == 0:
             self.first = 1
         if self.first % self.second != 0:
-            start = self.first if self.first < 0 else 1
-            for i in range(start, int(self.first / 2) + 1):
-                if self.first % i == 0:
-                    divisors.append(i)
-            lower_divisors = divisors
-            for lower_divisor in lower_divisors:
-                lower_divisors.append(self.first / lower_divisor)
-            if self.first < 0:
-                negative_divisors = divisors
-                for negative_divisor in negative_divisors:
-                    divisors.append(negative_divisor * -1)
+            divisors = self.find_divisors()
             self.second = choice(divisors)
         operation = "/"
         expression = f"{self.first} {operation} {self.second}"
         answer = self.first * self.second
         return {"first": self.first, "second": self.second, "operation": operation, "expression": expression, "answer": answer}
+    
+    def find_divisors(self):
+        """Method to help find all divisors of self.first.  Will return a list of all divisors."""
+        divisors = []
+        start = self.first if self.first < 0 else 1
+        for i in range(start, int(self.first / 2) + 1):
+            if self.first % i == 0:
+                divisors.append(i)
+        lower_divisors = divisors
+        for lower_divisor in lower_divisors:
+            lower_divisors.append(self.first / lower_divisor)
+        if self.first < 0:
+            negative_divisors = divisors
+            for negative_divisor in negative_divisors:
+                divisors.append(negative_divisor * -1)
+        return divisors
+        
