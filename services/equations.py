@@ -54,6 +54,8 @@ class Generator:
     
     def find_divisors(self):
         """Method to help find all divisors of self.first.  Will return a list of all divisors."""
+        if self.first == 0:
+            raise ValueError("Cannot find divisors for 0.")
         divisors = []
         start = self.first if self.first < 0 else 1
         for i in range(start, int(self.first / 2) + 1):
