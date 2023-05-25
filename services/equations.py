@@ -62,7 +62,9 @@ class Generator:
         for i in range(1, end):
             if self.first % i == 0:
                 divisors.append(i)
-                divisors.append(abs(int(self.first / i)))
+                second_divisor = self.first / i
+                if second_divisor != i:
+                    divisors.append(abs(int(second_divisor)))
         if self.first < 0:
             positive_divisors = divisors.copy()
             for divisor in positive_divisors:
