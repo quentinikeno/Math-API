@@ -103,5 +103,10 @@ class TestEquations(unittest.TestCase):
         divisors = equations.Generator(-30, -30).find_divisors()
         self.assertEqual(divisors, [1, 30, 2, 15, 3, 10, 5, 6, -1, -30, -2, -15, -3, -10, -5, -6])
         
+    def test_find_divisors_of_36(self):
+        """Test the find_divisors on finding the divisors of 36."""
+        divisors = equations.Generator(36, 36).find_divisors()
+        self.assertEqual(divisors, [1, 36, 2, 18, 3, 12, 4, 9, 6])
+        
 if __name__ == '__main__':
     unittest.main()
