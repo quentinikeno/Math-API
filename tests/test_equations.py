@@ -121,5 +121,10 @@ class TestEquations(unittest.TestCase):
         self.assertTrue(all(item in divisors for item in expected_divisors))
         self.assertTrue(all(item in expected_divisors for item in divisors))
         
+    def test_divisors_of_0(self):
+        """Test that find divisors will raise an exception when the first number is 0."""
+        with self.assertRaises(ValueError):
+            equations.Generator(0, 0).find_divisors()
+        
 if __name__ == '__main__':
     unittest.main()
