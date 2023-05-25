@@ -96,8 +96,12 @@ class TestEquations(unittest.TestCase):
     def test_find_divisors_of_30(self):
         """Test the find_divisors on finding the divisors of 30."""
         divisors = equations.Generator(30, 30).find_divisors()
-        self.assertEqual(divisors, [1, 2, 3, 5, 6, 10, 15, 30])
+        self.assertEqual(divisors, [1, 30, 2, 15, 3, 10, 5, 6])
         
+    def test_find_divisors_of_negative_30(self):
+        """Test the find_divisors on finding the divisors of -30."""
+        divisors = equations.Generator(-30, -30).find_divisors()
+        self.assertEqual(divisors, [1, 30, 2, 15, 3, 10, 5, 6, -1, -30, -2, -15, -3, -10, -5, -6])
         
 if __name__ == '__main__':
     unittest.main()
