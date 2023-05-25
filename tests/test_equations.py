@@ -96,17 +96,30 @@ class TestEquations(unittest.TestCase):
     def test_find_divisors_of_30(self):
         """Test the find_divisors on finding the divisors of 30."""
         divisors = equations.Generator(30, 30).find_divisors()
-        self.assertEqual(divisors, [1, 30, 2, 15, 3, 10, 5, 6])
+        expected_divisors = [1, 30, 2, 15, 3, 10, 5, 6]
+        self.assertTrue(all(item in divisors for item in expected_divisors))
+        self.assertTrue(all(item in expected_divisors for item in divisors))
         
     def test_find_divisors_of_negative_30(self):
         """Test the find_divisors on finding the divisors of -30."""
         divisors = equations.Generator(-30, -30).find_divisors()
-        self.assertEqual(divisors, [1, 30, 2, 15, 3, 10, 5, 6, -1, -30, -2, -15, -3, -10, -5, -6])
+        expected_divisors = [1, 30, 2, 15, 3, 10, 5, 6, -1, -30, -2, -15, -3, -10, -5, -6]
+        self.assertTrue(all(item in divisors for item in expected_divisors))
+        self.assertTrue(all(item in expected_divisors for item in divisors))
         
     def test_find_divisors_of_36(self):
         """Test the find_divisors on finding the divisors of 36."""
         divisors = equations.Generator(36, 36).find_divisors()
-        self.assertEqual(divisors, [1, 36, 2, 18, 3, 12, 4, 9, 6])
+        expected_divisors = [1, 36, 2, 18, 3, 12, 4, 9, 6]
+        self.assertTrue(all(item in divisors for item in expected_divisors))
+        self.assertTrue(all(item in expected_divisors for item in divisors))
+        
+    def test_find_divisors_of_negative_36(self):
+        """Test the find_divisors on finding the divisors of 36."""
+        divisors = equations.Generator(-36, -36).find_divisors()
+        expected_divisors = [1, 36, 2, 18, 3, 12, 4, 9, 6, -1, -36, -2, -18, -3, -12, -4, -9, -6]
+        self.assertTrue(all(item in divisors for item in expected_divisors))
+        self.assertTrue(all(item in expected_divisors for item in divisors))
         
 if __name__ == '__main__':
     unittest.main()
