@@ -1,4 +1,5 @@
 from random import randint, choice
+from math import sqrt
 
 defaultMax = 99
 defaultMin = 1
@@ -57,16 +58,14 @@ class Generator:
         if self.first == 0:
             raise ValueError("Cannot find divisors for 0.")
         divisors = []
-        start = self.first if self.first < 0 else 1
-        for i in range(start, int(self.first / 2) + 1):
+        end = int(sqrt(abs(self.first))) + 1
+        for i in range(1, end):
             if self.first % i == 0:
                 divisors.append(i)
-        lower_divisors = divisors
-        for lower_divisor in lower_divisors:
-            lower_divisors.append(self.first / lower_divisor)
+                divisors.append(abs(int(self.first / i)))
         if self.first < 0:
-            negative_divisors = divisors
-            for negative_divisor in negative_divisors:
-                divisors.append(negative_divisor * -1)
+            positive_divisors = divisors.copy()
+            for divisor in positive_divisors:
+                divisors.append(-divisor)
         return divisors
         
