@@ -1,6 +1,13 @@
 import unittest
 from services import equations
 
+class Equation:
+    first: int
+    second: int
+    operation: str
+    expression: str
+    answer: int
+
 class TestEquations(unittest.TestCase):
     """Tests for the Equations class."""
     
@@ -161,6 +168,13 @@ class TestEquations(unittest.TestCase):
         self.assertTrue("first" in result)
         self.assertTrue(result["first"] >= 1)
         self.assertTrue(result["first"] <= 99)
+        
+    def test_random(self):
+        """Test the random method.  It should return either a addition, subtraction, multiplication, or division problem."""
+        
+        result = equations.Generator().random()
+        
+        self.assertIn(result["operation"], ["+", "-", "*", "/"])
         
 if __name__ == '__main__':
     unittest.main()
