@@ -125,6 +125,21 @@ class TestEquations(unittest.TestCase):
         """Test that find divisors will raise an exception when the first number is 0."""
         with self.assertRaises(ValueError):
             equations.Generator(0, 0).find_divisors()
+            
+    def test_div_default(self):
+        """Test the div method with the default settings."""
+        
+        result = equations.Generator().div()
+
+        self.assertTrue("first" in result)
+        self.assertTrue(result["first"] >= 1)
+        self.assertTrue(result["first"] <= 99)
+        self.assertTrue("second" in result)
+        self.assertTrue(result["second"] >= 1)
+        self.assertTrue(result["second"] <= 99)
+        self.assertEqual(result["operation"], "/")
+        self.assertEqual(result["expression"], f'{result["first"]} / {result["second"]}')
+        self.assertEqual(result["answer"], result["first"] / result["second"])
         
 if __name__ == '__main__':
     unittest.main()
