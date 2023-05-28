@@ -141,5 +141,17 @@ class TestEquations(unittest.TestCase):
         self.assertEqual(result["expression"], f'{result["first"]} / {result["second"]}')
         self.assertEqual(result["answer"], result["first"] / result["second"])
         
+    def test_div_custom(self):
+        """Test the div method with the custom settings.  Check that a new divisor is found if the second number doesn't divide the first evenly."""
+        
+        result = equations.Generator(20, 20, 19, 19).div()
+
+        self.assertTrue("first" in result)
+        self.assertTrue("second" in result)
+        self.assertTrue(result["second"] != 19)
+        self.assertEqual(result["first"] % result["second"], 0)
+        self.assertEqual(result["answer"], result["first"] / result["second"])
+        self.assertIs(type(result["answer"]), int)
+        
 if __name__ == '__main__':
     unittest.main()
