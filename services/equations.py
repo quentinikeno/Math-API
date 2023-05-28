@@ -50,7 +50,7 @@ class Generator:
             self.second = choice(divisors)
         operation = "/"
         expression = f"{self.first} {operation} {self.second}"
-        answer = self.first * self.second
+        answer = int(self.first / self.second)
         return {"first": self.first, "second": self.second, "operation": operation, "expression": expression, "answer": answer}
     
     def find_divisors(self):
