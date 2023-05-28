@@ -1,13 +1,6 @@
 import unittest
 from services import equations
 
-class Equation:
-    first: int
-    second: int
-    operation: str
-    expression: str
-    answer: int
-
 class TestEquations(unittest.TestCase):
     """Tests for the Equations class."""
     
