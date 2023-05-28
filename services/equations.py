@@ -44,7 +44,7 @@ class Generator:
     def div(self) -> Equation:
         """Returns a dictionary with the type of the class Equation for a division problem problem."""
         if self.first == 0:
-            self.first = 1
+            self.first = randint(defaultMin, defaultMax)
         if self.first % self.second != 0:
             divisors = self.find_divisors()
             self.second = choice(divisors)
