@@ -153,5 +153,14 @@ class TestEquations(unittest.TestCase):
         self.assertEqual(result["answer"], result["first"] / result["second"])
         self.assertIs(type(result["answer"]), int)
         
+    def test_div_default(self):
+        """Test the div method with 0 set the the first number.  The first number should be randomized so that we avoid division by 0."""
+        
+        result = equations.Generator(0, 0).div()
+
+        self.assertTrue("first" in result)
+        self.assertTrue(result["first"] >= 1)
+        self.assertTrue(result["first"] <= 99)
+        
 if __name__ == '__main__':
     unittest.main()
