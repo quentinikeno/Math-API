@@ -1,4 +1,3 @@
-from typing import Union
 from fastapi import FastAPI
 from services import equations
 from pydantic import BaseModel
