@@ -86,11 +86,10 @@ class Generator:
                 answer: int
                 }
         """
-        if self.second == 0:
-            self.second = randint(defaultMin, defaultMax)
-        if self.first % self.second != 0:
+        if self.second == 0 or self.first % self.second != 0:
             divisors = self.find_divisors()
             self.second = choice(divisors)
+            
         operation = "/"
         expression = f"{self.first} {operation} {self.second}"
         answer = int(self.first / self.second)
