@@ -116,3 +116,13 @@ def test_div_division_by_zero():
     assert problem['operation'] == '/'
     assert type(problem['expression']) == str
     assert type(problem['answer']) == int
+    
+def test_random_default():
+    response = client.get("/random")
+    problem = response.json()
+    assert response.status_code == 200
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '/'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
