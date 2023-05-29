@@ -62,6 +62,18 @@ def test_sub_negative():
     assert result["answer"] == result["first"] - result["second"]
     assert result["answer"] < 0
     
+def test_sub_negative_not_allowed():
+    """Test the sub method when negatives are not allowed.  If the difference is negative the first and second numbers will switch so that the answer is positive."""
+    
+    result = equations.Generator(1, 1, 2, 2, False).sub()
+
+    assert result["first"] == 2
+    assert result["second"] == 1
+    assert result["operation"] == "-"
+    assert result["expression"] == f'{result["first"]} - {result["second"]}'
+    assert result["answer"] == result["first"] - result["second"]
+    assert result["answer"] == 1
+    
 def test_mul_default():
     """Test the mul method with the default settings."""
     
