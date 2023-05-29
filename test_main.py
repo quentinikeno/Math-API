@@ -15,7 +15,7 @@ def test_read_main():
     """Test the root (/) route"""
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"msg": "Welcome to the Math API.  Go to /docs for documentation."}
+    assert response.json() == {"msg": "Welcome to the Math API!  Go to /docs for documentation."}
     
 def test_add_default():
     """Test the /add route with the default settings.  Nothing passed into the query string."""
