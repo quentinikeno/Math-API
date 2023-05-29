@@ -18,19 +18,19 @@ Different routes will allow you to receive different types of math problems. You
   GET /sub
 ```
 
-#### Get an Multiplication Problem
+#### Get a Multiplication Problem
 
 ```
   GET /mul
 ```
 
-#### Get an Division Problem
+#### Get a Division Problem
 
 ```
   GET /div
 ```
 
-#### Get an Random Problem
+#### Get a Random Problem
 
 This route will return a single addition, subtraction, multiplication, or division problem.
 
