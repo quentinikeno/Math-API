@@ -35,3 +35,33 @@ def test_add_one_plus_one():
     assert problem['operation'] == '+'
     assert problem['expression'] == '1 + 1'
     assert problem['answer'] == 2
+    
+def test_sub_default():
+    response = client.get("/sub")
+    problem = response.json()
+    assert response.status_code == 200
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '-'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
+    
+def test_sub_one_minus_one():
+    response = client.get("/sub?minFirst=1&maxFirst=1&minSecond=1&maxSecond=1")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '-'
+    assert problem['expression'] == '1 - 1'
+    assert problem['answer'] == 0
+    
+def test_sub_one_minus_2():
+    response = client.get("/sub?minFirst=1&maxFirst=1&minSecond=2&maxSecond=2&negative=True")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 2
+    assert problem['operation'] == '-'
+    assert problem['expression'] == '1 - 2'
+    assert problem['answer'] == -1
