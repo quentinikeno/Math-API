@@ -85,3 +85,34 @@ def test_mul_two_times_two():
     assert problem['operation'] == '*'
     assert problem['expression'] == '2 * 2'
     assert problem['answer'] == 4
+    
+def test_div_default():
+    response = client.get("/div")
+    problem = response.json()
+    assert response.status_code == 200
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '/'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
+    
+def test_div_two_divided_by_two():
+    response = client.get("/div?minFirst=2&maxFirst=2&minSecond=2&maxSecond=2")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 2
+    assert problem['second'] == 2
+    assert problem['operation'] == '/'
+    assert problem['expression'] == '2 / 2'
+    assert problem['answer'] == 1
+    
+def test_div_division_by_zero():
+    response = client.get("/div?minFirst=0&maxFirst=0&minSecond=2&maxSecond=2")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] != 0
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '/'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
