@@ -1,5 +1,6 @@
 from random import randint, choice
 from math import sqrt
+from typing import List
 
 defaultMax = 99
 defaultMin = 1
@@ -93,7 +94,7 @@ class Generator:
         answer = int(self.first / self.second)
         return {"first": self.first, "second": self.second, "operation": operation, "expression": expression, "answer": answer}
     
-    def find_divisors(self) -> list:
+    def find_divisors(self) -> List[int]:
         """Method to help find all divisors of self.first.  Will return a list of all divisors.
         
             Returns: [int, int, int, ...]
