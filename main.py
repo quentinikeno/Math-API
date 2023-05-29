@@ -23,3 +23,7 @@ def get_mul(minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond
 @app.get("/div")
 def get_div(minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).div()
+
+@app.get("/random")
+def get_random(minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
+    return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).random()
