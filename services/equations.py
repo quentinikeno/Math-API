@@ -101,8 +101,6 @@ class Generator:
         
             Returns: [int, int, int, ...]
         """
-        if self.first == 0:
-            raise ValueError("Cannot find divisors for 0.")
         divisors = []
         end = int(sqrt(abs(self.first))) + 1
         for i in range(1, end):

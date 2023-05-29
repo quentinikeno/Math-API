@@ -131,11 +131,6 @@ def test_find_divisors_of_negative_36():
     expected_divisors = [1, 36, 2, 18, 3, 12, 4, 9, 6, -1, -36, -2, -18, -3, -12, -4, -9, -6]
     assert all(item in divisors for item in expected_divisors)
     assert all(item in expected_divisors for item in divisors)
-    
-def test_divisors_of_0():
-    """Test that find divisors will raise an exception when the first number is 0."""
-    with pytest.raises(ValueError):
-        equations.Generator(0, 0).find_divisors()
         
 def test_div_default():
     """Test the div method with the default settings."""
