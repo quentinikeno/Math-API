@@ -1,6 +1,6 @@
 from typing import Union
-
 from fastapi import FastAPI
+from services import equations
 
 app = FastAPI()
 
@@ -8,7 +8,6 @@ app = FastAPI()
 def read_root():
     return {"msg": "Welcome to the Math API.  Go to /docs for documentation."}
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/add")
+def read_item(minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
+    return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).add()
