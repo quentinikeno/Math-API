@@ -77,7 +77,13 @@ uvicorn main:app
 
 ## Running Tests
 
-To run tests, first install requirements_dev.txt. This will install Pytest if you don't already have it. Then run Pytest.
+To run tests, first install requirements_dev.txt. This will install Pytest if you don't already have it.
+
+```
+pip install -r requirements_dev.txt
+```
+
+Then run Pytest.
 
 ```
 pytest
