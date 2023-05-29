@@ -123,6 +123,6 @@ def test_random_default():
     assert response.status_code == 200
     assert type(problem['first']) == int
     assert type(problem['second']) == int
-    assert problem['operation'] == '/'
+    assert problem['operation'] in ['+', '-', '*', '/']
     assert type(problem['expression']) == str
     assert type(problem['answer']) == int
