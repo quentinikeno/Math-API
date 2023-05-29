@@ -4,7 +4,34 @@ import main
 
 client = TestClient(main.app)
 
+class Equation:
+    first: int
+    second: int
+    operation: str
+    expression: str
+    answer: int
+
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"msg": "Welcome to the Math API.  Go to /docs for documentation."}
+    
+def test_add_default():
+    response = client.get("/add")
+    problem = response.json()
+    assert response.status_code == 200
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '+'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
+    
+def test_add_one_plus_one():
+    response = client.get("/add?minFirst=1&maxFirst=1&minSecond=1&maxSecond=1")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '+'
+    assert problem['expression'] == '1 + 1'
+    assert problem['answer'] == 2
