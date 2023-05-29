@@ -1,3 +1,5 @@
+# Helper class for generating random math equations.
+
 from random import randint, choice
 from math import sqrt
 from typing import List
