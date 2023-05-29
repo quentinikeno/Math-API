@@ -52,6 +52,16 @@ def test_add_min_and_max():
     assert problem['expression'] == '1 + 1'
     assert problem['answer'] == 2
     
+def test_add_max_less_than_min():
+    """Test the /add route when the max < min. The min and max should swap so that max > min."""
+    response = client.get("/add?min=1&max=0")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] <= 1
+    assert problem['first'] >= 0
+    assert problem['second'] <= 1
+    assert problem['second'] >= 0
+    
 def test_sub_default():
     """Test the /sub route with the default settings.  Nothing passed into the query string."""
     response = client.get("/sub")
@@ -96,6 +106,16 @@ def test_sub_min_and_max():
     assert problem['expression'] == '1 - 1'
     assert problem['answer'] == 0
     
+def test_sub_max_less_than_min():
+    """Test the /sub route when the max < min. The min and max should swap so that max > min."""
+    response = client.get("/sub?min=1&max=0")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] <= 1
+    assert problem['first'] >= 0
+    assert problem['second'] <= 1
+    assert problem['second'] >= 0
+    
 def test_mul_default():
     """Test the /mul route with the default settings.  Nothing passed into the query string."""
     response = client.get("/mul")
@@ -128,6 +148,16 @@ def test_mul_min_and_max():
     assert problem['operation'] == '*'
     assert problem['expression'] == '1 * 1'
     assert problem['answer'] == 1
+    
+def test_mul_max_less_than_min():
+    """Test the /mul route when the max < min. The min and max should swap so that max > min."""
+    response = client.get("/mul?min=1&max=0")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] <= 1
+    assert problem['first'] >= 0
+    assert problem['second'] <= 1
+    assert problem['second'] >= 0
     
 def test_div_default():
     """Test the /div route with the default settings.  Nothing passed into the query string."""
@@ -174,6 +204,14 @@ def test_div_min_and_max():
     assert problem['expression'] == '1 / 1'
     assert problem['answer'] == 1
     
+def test_div_max_less_than_min():
+    """Test the /div route when the max < min. The min and max should swap so that max > min.  The second number might be generated using the find_divisors method so no need to check that."""
+    response = client.get("/div?min=4&max=2")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] <= 4
+    assert problem['first'] >= 2
+    
 def test_random_default():
     """Test the /random route with the default settings.  Nothing passed into the query string."""
     response = client.get("/random")
@@ -192,3 +230,11 @@ def test_random_min_and_max():
     assert response.status_code == 200
     assert problem['first'] == 1
     assert problem['second'] == 1
+    
+def test_random_max_less_than_min():
+    """Test the /random route when the max < min. The min and max should swap so that max > min.  The second number might be generated using the find_divisors method so no need to check that."""
+    response = client.get("/random?min=4&max=2")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] <= 4
+    assert problem['first'] >= 2
