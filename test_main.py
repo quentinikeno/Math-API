@@ -65,3 +65,23 @@ def test_sub_one_minus_2():
     assert problem['operation'] == '-'
     assert problem['expression'] == '1 - 2'
     assert problem['answer'] == -1
+    
+def test_mul_default():
+    response = client.get("/mul")
+    problem = response.json()
+    assert response.status_code == 200
+    assert type(problem['first']) == int
+    assert type(problem['second']) == int
+    assert problem['operation'] == '*'
+    assert type(problem['expression']) == str
+    assert type(problem['answer']) == int
+    
+def test_mul_two_times_two():
+    response = client.get("/mul?minFirst=2&maxFirst=2&minSecond=2&maxSecond=2")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 2
+    assert problem['second'] == 2
+    assert problem['operation'] == '*'
+    assert problem['expression'] == '2 * 2'
+    assert problem['answer'] == 4
