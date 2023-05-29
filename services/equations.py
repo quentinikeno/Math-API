@@ -84,8 +84,8 @@ class Generator:
                 answer: int
                 }
         """
-        if self.first == 0:
-            self.first = randint(defaultMin, defaultMax)
+        if self.second == 0:
+            self.second = randint(defaultMin, defaultMax)
         if self.first % self.second != 0:
             divisors = self.find_divisors()
             self.second = choice(divisors)

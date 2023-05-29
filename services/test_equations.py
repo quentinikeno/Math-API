@@ -163,13 +163,13 @@ def test_div_custom():
     assert type(result["answer"]) == int
     
 def test_div_default():
-    """Test the div method with 0 set the the first number.  The first number should be randomized so that we avoid division by 0."""
+    """Test the div method with 0 set the the second number.  The second number should be randomized so that we avoid division by 0."""
     
-    result = equations.Generator(0, 0).div()
+    result = equations.Generator(1, 99, 0, 0).div()
 
-    assert "first" in result
-    assert result["first"] >= 1
-    assert result["first"] <= 99
+    assert "second" in result
+    assert result["second"] >= 1
+    assert result["second"] <= 99
     
 def test_random():
     """Test the random method.  It should return either a addition, subtraction, multiplication, or division problem."""
