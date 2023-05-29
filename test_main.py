@@ -41,6 +41,17 @@ def test_add_one_plus_one():
     assert problem['expression'] == '1 + 1'
     assert problem['answer'] == 2
     
+def test_add_min_and_max():
+    """Test the /add route specifying 1 and 1 for the first and second numbers using the min and max parameters.  It should override the other parameters."""
+    response = client.get("/add?min=1&max=1&minFirst=3&maxSecond=5")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '+'
+    assert problem['expression'] == '1 + 1'
+    assert problem['answer'] == 2
+    
 def test_sub_default():
     """Test the /sub route with the default settings.  Nothing passed into the query string."""
     response = client.get("/sub")
@@ -74,6 +85,17 @@ def test_sub_one_minus_2():
     assert problem['expression'] == '1 - 2'
     assert problem['answer'] == -1
     
+def test_sub_min_and_max():
+    """Test the /sub route specifying 1 and 1 for the first and second numbers using the min and max parameters.  It should override the other parameters."""
+    response = client.get("/sub?min=1&max=1&minFirst=3&maxSecond=5")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '-'
+    assert problem['expression'] == '1 - 1'
+    assert problem['answer'] == 0
+    
 def test_mul_default():
     """Test the /mul route with the default settings.  Nothing passed into the query string."""
     response = client.get("/mul")
@@ -95,6 +117,17 @@ def test_mul_two_times_two():
     assert problem['operation'] == '*'
     assert problem['expression'] == '2 * 2'
     assert problem['answer'] == 4
+    
+def test_mul_min_and_max():
+    """Test the /mul route specifying 1 and 1 for the first and second numbers using the min and max parameters.  It should override the other parameters."""
+    response = client.get("/mul?min=1&max=1&minFirst=3&maxSecond=5")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '*'
+    assert problem['expression'] == '1 * 1'
+    assert problem['answer'] == 1
     
 def test_div_default():
     """Test the /div route with the default settings.  Nothing passed into the query string."""
@@ -130,6 +163,17 @@ def test_div_division_by_zero():
     assert type(problem['expression']) == str
     assert type(problem['answer']) == int
     
+def test_div_min_and_max():
+    """Test the /div route specifying 1 and 1 for the first and second numbers using the min and max parameters.  It should override the other parameters."""
+    response = client.get("/div?min=1&max=1&minFirst=3&maxSecond=5")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
+    assert problem['operation'] == '/'
+    assert problem['expression'] == '1 / 1'
+    assert problem['answer'] == 1
+    
 def test_random_default():
     """Test the /random route with the default settings.  Nothing passed into the query string."""
     response = client.get("/random")
@@ -140,3 +184,11 @@ def test_random_default():
     assert problem['operation'] in ['+', '-', '*', '/']
     assert type(problem['expression']) == str
     assert type(problem['answer']) == int
+    
+def test_random_min_and_max():
+    """Test the /random route specifying 1 and 1 for the first and second numbers using the min and max parameters.  It should override the other parameters."""
+    response = client.get("/random?min=1&max=1&minFirst=3&maxSecond=5")
+    problem = response.json()
+    assert response.status_code == 200
+    assert problem['first'] == 1
+    assert problem['second'] == 1
