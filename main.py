@@ -1,5 +1,5 @@
 from typing import Union
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from services import equations
 from pydantic import BaseModel
 from response_examples import add_responses, sub_responses, mul_responses, div_responses, random_responses
@@ -22,54 +22,99 @@ def get_root():
 @app.get("/add", response_model = Equation, responses = add_responses)
 def get_add(min: Union[int, None] = None, max: Union[int, None] = None, minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
     """The addition route which responds with a random addition problem."""
+    
+    # Set the mins and maxes for the first and second numbers when the min and max parameters are provided.
     if type(min) == int:
-       minFirst = min
-       minSecond = min
+        minFirst = min
+        minSecond = min
     if type(max) == int:
-       maxFirst = max
-       maxSecond = max
+        maxFirst = max
+        maxSecond = max
+    
+    # Switch the min and max when the max is less than the min
+    if maxFirst < minFirst:
+        minFirst, maxFirst = maxFirst, minFirst
+    if maxSecond < minSecond:
+        minSecond, maxSecond = maxSecond, minSecond
+    
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).add()
 
 @app.get("/sub", response_model = Equation, responses = sub_responses)
 def get_sub(min: Union[int, None] = None, max: Union[int, None] = None, minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99, negative: bool = False):
     """The subtraction route which responds with a random subtraction problem."""
+    
+    # Set the mins and maxes for the first and second numbers when the min and max parameters are provided.
     if type(min) == int:
-       minFirst = min
-       minSecond = min
+        minFirst = min
+        minSecond = min
     if type(max) == int:
-       maxFirst = max
-       maxSecond = max
+        maxFirst = max
+        maxSecond = max
+    
+    # Switch the min and max when the max is less than the min
+    if maxFirst < minFirst:
+        minFirst, maxFirst = maxFirst, minFirst
+    if maxSecond < minSecond:
+        minSecond, maxSecond = maxSecond, minSecond
+    
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond, negative).sub()
 
 @app.get("/mul", response_model = Equation, responses = mul_responses)
 def get_mul(min: Union[int, None] = None, max: Union[int, None] = None, minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
     """The multiplication route which responds with a random multiplication problem."""
+    
+    # Set the mins and maxes for the first and second numbers when the min and max parameters are provided.
     if type(min) == int:
-       minFirst = min
-       minSecond = min
+        minFirst = min
+        minSecond = min
     if type(max) == int:
-       maxFirst = max
-       maxSecond = max
+        maxFirst = max
+        maxSecond = max
+    
+    # Switch the min and max when the max is less than the min
+    if maxFirst < minFirst:
+        minFirst, maxFirst = maxFirst, minFirst
+    if maxSecond < minSecond:
+        minSecond, maxSecond = maxSecond, minSecond
+    
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).mul()
 
 @app.get("/div", response_model = Equation, responses = div_responses)
 def get_div(min: Union[int, None] = None, max: Union[int, None] = None, minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99):
     """The division route which responds with a random division problem."""
+    
+    # Set the mins and maxes for the first and second numbers when the min and max parameters are provided.
     if type(min) == int:
-       minFirst = min
-       minSecond = min
+        minFirst = min
+        minSecond = min
     if type(max) == int:
-       maxFirst = max
-       maxSecond = max
+        maxFirst = max
+        maxSecond = max
+    
+    # Switch the min and max when the max is less than the min
+    if maxFirst < minFirst:
+        minFirst, maxFirst = maxFirst, minFirst
+    if maxSecond < minSecond:
+        minSecond, maxSecond = maxSecond, minSecond
+    
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond).div()
 
 @app.get("/random", response_model = Equation, responses = random_responses)
 def get_random(min: Union[int, None] = None, max: Union[int, None] = None, minFirst: int = 1, maxFirst: int = 99, minSecond: int = 1, maxSecond: int = 99, negative: bool = False):
     """The random route which responds with an addtion, a subtraction, a multiplication, or a division problem."""
+    
+    # Set the mins and maxes for the first and second numbers when the min and max parameters are provided.
     if type(min) == int:
-       minFirst = min
-       minSecond = min
+        minFirst = min
+        minSecond = min
     if type(max) == int:
-       maxFirst = max
-       maxSecond = max
+        maxFirst = max
+        maxSecond = max
+    
+    # Switch the min and max when the max is less than the min
+    if maxFirst < minFirst:
+        minFirst, maxFirst = maxFirst, minFirst
+    if maxSecond < minSecond:
+        minSecond, maxSecond = maxSecond, minSecond
+    
     return equations.Generator(minFirst, maxFirst, minSecond, maxSecond, negative).random()
