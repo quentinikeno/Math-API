@@ -117,11 +117,11 @@ def test_div_two_divided_by_two():
     assert problem['answer'] == 1
     
 def test_div_division_by_zero():
-    """Test the /div route specifying 0 for the first number.  Since division by 0 is not allowed, the number should be regenerated."""
-    response = client.get("/div?minFirst=0&maxFirst=0&minSecond=2&maxSecond=2")
+    """Test the /div route specifying 0 for the divison number.  Since division by 0 is not allowed, the number should be regenerated."""
+    response = client.get("/div?minFirst=2&maxFirst=2&minSecond=0&maxSecond=0")
     problem = response.json()
     assert response.status_code == 200
-    assert problem['first'] != 0
+    assert problem['second'] != 0
     assert type(problem['first']) == int
     assert type(problem['second']) == int
     assert problem['operation'] == '/'
