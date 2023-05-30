@@ -9,25 +9,25 @@ Different routes will allow you to receive different types of math problems. You
 #### Get an Addition Problem
 
 ```
-  GET /add
+  GET https://web-production-a407.up.railway.app/add
 ```
 
 #### Get a Subraction Problem
 
 ```
-  GET /sub
+  GET https://web-production-a407.up.railway.app/sub
 ```
 
 #### Get a Multiplication Problem
 
 ```
-  GET /mul
+  GET https://web-production-a407.up.railway.app/mul
 ```
 
 #### Get a Division Problem
 
 ```
-  GET /div
+  GET https://web-production-a407.up.railway.app/div
 ```
 
 #### Get a Random Problem
@@ -35,7 +35,7 @@ Different routes will allow you to receive different types of math problems. You
 This route will return a single addition, subtraction, multiplication, or division problem.
 
 ```
-  GET /random
+  GET https://web-production-a407.up.railway.app/random
 ```
 
 ### Parameters
@@ -74,6 +74,10 @@ Then start the server with uvicorn:
 ```
 uvicorn main:app
 ```
+
+## Depoyment
+
+[Deployed API](https://web-production-a407.up.railway.app/)
 
 ## Running Tests
 
